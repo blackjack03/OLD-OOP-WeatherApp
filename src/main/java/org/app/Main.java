@@ -47,11 +47,17 @@ public class Main {
 
         final var city_selector = new LocationSelector();
 
-        // final var LOCATIONS = selector.getPossibleLocations("forli".toLowerCase());
+        final var LOCATIONS = city_selector.getPossibleLocations("meLdola");
 
-        // System.out.println(LOCATIONS);
+        System.out.println(LOCATIONS);
 
-        System.out.println(city_selector.getByID(1380594352));
+        /*var c = city_selector.getByID(1380594352);
+
+        if (c.isPresent()) {
+            System.out.println(c.get());
+        } else {
+            System.out.println("Città non trovata");
+        }*/
 
 
         // https://api.open-meteo.com/v1/forecast?latitude=44.2218&longitude=12.0414&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,cloud_cover,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability,rain,weather_code,wind_speed_10m,wind_direction_10m,soil_temperature_0cm&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,daylight_duration,sunshine_duration,uv_index_max&timezone=Europe%2FBerlin&forecast_days=14

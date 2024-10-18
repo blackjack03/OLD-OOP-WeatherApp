@@ -17,7 +17,7 @@ public class LocationSelector implements LocationSelectorInterface {
             CSV = CSVParser.readCSVToMap(CSV_PATH);
             for (int i = 0; i < CSV.size(); i++) {
                 final int idx = Integer.parseInt(CSV.get(i).get("id"));
-                CITIES_MAP.put(idx, CSV.get(i));
+                this.CITIES_MAP.put(idx, CSV.get(i));
             }
         } catch (final Exception err) {
             throw new Error(err);
@@ -28,12 +28,13 @@ public class LocationSelector implements LocationSelectorInterface {
     @Override
     public List<Pair<String, Integer>> getPossibleLocations(final String txt) {
         final List<Pair<String, Integer>> possibleLocations = new ArrayList<>();
+        final String query = txt.toLowerCase();
 
         for (int i = 0; i < CSV.size(); i++) {
             final Map<String, String> entry = CSV.get(i);
             final String cityName = entry.get("city").toLowerCase();
             final String cityNameAscii = entry.get("city_ascii").toLowerCase();
-            if (cityName.contains(txt) || cityNameAscii.contains(txt)) {
+            if (cityName.contains(query) || cityNameAscii.contains(query)) {
                 final var city = new Pair<>(entry.get("city"), Integer.parseInt(entry.get("id")));
                 possibleLocations.add(city);
             }
@@ -43,8 +44,10 @@ public class LocationSelector implements LocationSelectorInterface {
     }
 
     @Override
-    public Map<String, String> getByID(final int ID) {
-        return CITIES_MAP.get(ID);
+    public Optional<Map<String, String>> getByID(final int ID) {
+        return this.CITIES_MAP.containsKey(ID) ?
+                Optional.of(CITIES_MAP.get(ID)) :
+                Optional.empty();
     }
 
 }

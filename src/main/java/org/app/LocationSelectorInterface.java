@@ -6,6 +6,6 @@ public interface LocationSelectorInterface {
     
     List<Pair<String, Integer>> getPossibleLocations(String txt);
 
-    Map<String, String> getByID(int ID);
+    Optional<Map<String, String>> getByID(int ID);
 
 }

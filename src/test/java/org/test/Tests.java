@@ -19,7 +19,7 @@ public class Tests {
     public void test1() {
         final var city_selector = new LocationSelector();
         assertEquals(city_selector.getByID(1380594352)
-                .get("city_ascii"), "Forli");
+                .get().get("city_ascii"), "Forli");
     }
 
 }
