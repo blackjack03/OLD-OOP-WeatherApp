@@ -2,9 +2,7 @@ package org.app;
 
 import java.util.*;
 
-public interface WeatherInterface {
-
-    public static enum API_TYPES {
+/*public static enum API_TYPES {
         CURRENT("/current.json"),
         FORECAST("/forecast.json"),
         SEARCH("/search.json"),
@@ -23,11 +21,21 @@ public interface WeatherInterface {
         public String toString() {
             return this.apiTypeURL;
         }
-    };
+    };*/
+
+public interface WeatherInterface {
 
     void setLocation(Map<String, String> locationInfo);
 
-    boolean getAllForecast();
+    boolean reqestsAllForecast();
+
+    Optional<Map<String, Map<String, Map<String, Number>>>> getAllForecast();
+
+    Optional<Map<String, Map<String, Number>>> getDailyGeneralForecast();
+
+    Optional<Map<String, Map<String, String>>> getDailyInfo();
+
+    int getForecastDays();
 
     boolean getWheatherNow();
 

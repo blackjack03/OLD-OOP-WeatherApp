@@ -35,7 +35,14 @@ public class LocationSelector implements LocationSelectorInterface {
             final String cityName = entry.get("city").toLowerCase();
             final String cityNameAscii = entry.get("city_ascii").toLowerCase();
             if (cityName.contains(query) || cityNameAscii.contains(query)) {
-                final var city = new Pair<>(entry.get("city"), Integer.parseInt(entry.get("id")));
+                final var complete_name = new StringBuilder();
+                complete_name.append(entry.get("city"));
+                complete_name.append(", ");
+                complete_name.append(entry.get("admin_name"));
+                complete_name.append(", ");
+                complete_name.append(entry.get("country"));
+                final var city = new Pair<>(complete_name.toString(),
+                        Integer.parseInt(entry.get("id")));
                 possibleLocations.add(city);
             }
         }

@@ -47,9 +47,27 @@ public class Main {
 
         final var city_selector = new LocationSelector();
 
-        final var LOCATIONS = city_selector.getPossibleLocations("meLdola");
+        /*final var LOCATIONS = city_selector.getPossibleLocations("meldola");
 
-        System.out.println(LOCATIONS);
+        System.out.println(LOCATIONS);*/
+
+        final var city_record = city_selector.getByID(1380594352);
+
+        if (city_record.isPresent()) {
+            final var W = new Weather();
+            W.setLocation(city_record.get());
+            if (W.reqestsAllForecast()) {
+                System.out.println("Tot. Days: " + W.getForecastDays());
+                System.out.println(W.getAllForecast().get()
+                        .get("2024-10-20").get("00"));
+                // System.out.println(W.getDailyGeneralForecast());
+                System.out.println(W.getDailyInfo());
+            } else {
+                System.out.println("Errore nella richiesta dei dati meteo!");
+            }
+        } else {
+            System.out.println("City not found!");
+        }
 
         /*var c = city_selector.getByID(1380594352);
 
