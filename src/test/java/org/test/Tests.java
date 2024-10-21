@@ -2,11 +2,12 @@ package org.test;
 
 import java.util.*;
 
-import org.app.LocationSelector;
 import org.jsoup.*;
 import org.jsoup.helper.*;
 import org.jsoup.nodes.*;
 import org.jsoup.select.*;
+
+import org.app.model.LocationSelector;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

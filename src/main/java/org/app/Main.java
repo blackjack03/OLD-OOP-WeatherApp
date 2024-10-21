@@ -7,19 +7,13 @@ import org.jsoup.helper.*;
 import org.jsoup.nodes.*;
 import org.jsoup.select.*;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-
 import java.util.concurrent.TimeUnit;
 import java.io.*;
 
 import javax.swing.*;
 import java.awt.event.*;
+
+import org.app.model.*;
 
 public class Main {
 
@@ -54,14 +48,14 @@ public class Main {
         final var city_record = city_selector.getByID(1380594352);
 
         if (city_record.isPresent()) {
-            final var W = new Weather();
-            W.setLocation(city_record.get());
+            final var W = new Weather(city_record.get());
             if (W.reqestsAllForecast()) {
                 System.out.println("Tot. Days: " + W.getForecastDays());
-                System.out.println(W.getAllForecast().get()
-                        .get("2024-10-20").get("00"));
+                // System.out.println(W.getAllForecast().get()
+                //        .get("2024-10-21").get("21"));
                 // System.out.println(W.getDailyGeneralForecast());
-                System.out.println(W.getDailyInfo());
+                // System.out.println(W.getDailyInfo());
+                System.out.println(W.getWeatherNow().get());
             } else {
                 System.out.println("Errore nella richiesta dei dati meteo!");
             }
